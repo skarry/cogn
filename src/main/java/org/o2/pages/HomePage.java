@@ -26,9 +26,14 @@ public class HomePage extends WebPage {
 
     }
 
+    /**
+     * Method to load Home page
+     * @param url
+     * @return {@link org.o2.pages.HomePage}
+     */
     public HomePage load(String url) {
         driver.navigate().to(url);
-        return new HomePage(driver);
+        return this;
     }
 
     public void printHelpOptions() {
