@@ -1,7 +1,5 @@
 package org.o2.pages;
 
-
-import org.o2.driver.DriverUtil;
 import org.openqa.selenium.By;
 import org.openqa.selenium.ElementNotVisibleException;
 import org.openqa.selenium.WebDriver;
@@ -16,7 +14,6 @@ import static org.o2.driver.DriverUtil.mouseOverOnElement;
 public class HomePage extends WebPage {
 
     private static final Logger logger = LoggerFactory.getLogger(HomePage.class);
-    private String alertLocator = "#main_wrapper";
     private String helpLocator = "#pn5";
     private String dropDownListLocator = "#pn5>ul>li>a";
     private String contactUsLocator = "a[manual_cm_re^='meganav_Help-_-Contact us']";
@@ -28,6 +25,7 @@ public class HomePage extends WebPage {
 
     /**
      * Method to load Home page
+     *
      * @param url
      * @return {@link org.o2.pages.HomePage}
      */
@@ -36,17 +34,26 @@ public class HomePage extends WebPage {
         return this;
     }
 
+    /**
+     * Method to print Help--> options
+     */
     public void printHelpOptions() {
         mouseOverOnElement(driver, driver.findElement(By.cssSelector(helpLocator)));
-        System.out.println("************** Printing Help Options *********************");
 
         List<WebElement> str = driver.findElements(By.cssSelector(dropDownListLocator));
-        System.out.println(str.size());
+        System.out.println("Number of Options in Help Drop Down: " + str.size());
+        System.out.println("************** Printing Help Options *********************");
         for (WebElement aStr : str) {
             System.out.println(aStr.getText());
         }
         System.out.println("**********************************************************");
     }
+
+    /**
+     * Method to click ContactUs Page
+     *
+     * @return {@link org.o2.pages.ContactUsPage}
+     */
 
     public ContactUsPage clickOnContactLink() {
         logger.debug("About to click on contact us link");

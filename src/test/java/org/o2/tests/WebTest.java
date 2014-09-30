@@ -8,30 +8,28 @@ import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 
 public class WebTest {
-	private static final Logger logger=LoggerFactory.getLogger(WebTest.class);
-	protected WebDriver driver;
-	private DriverUtil driverUtil;
-	@BeforeSuite
-	public void setUp(){
-		logger.debug("Setting up new Webdriver");
-		driverUtil=new DriverUtil();
-		driver=driverUtil.getDriver();
-		
-	}
+    private static final Logger logger = LoggerFactory.getLogger(WebTest.class);
+    protected WebDriver driver;
+    private DriverUtil driverUtil;
 
+    /**
+     * Setup WebDriver
+     */
+    @BeforeSuite
+    public void setUp() {
+        logger.debug("Setting up new Webdriver");
+        driverUtil = new DriverUtil();
+        driver = driverUtil.getDriver();
+
+    }
+
+    /**
+     * TearDown WebDriver
+     */
     @AfterSuite
-	public void tearDown(){
-		logger.debug("In Teardown");
-		driver.close();
-		driver.quit();
-	}
-	
-
-    public void pause(long timeOut){
-        try {
-            Thread.sleep(timeOut);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    public void tearDown() {
+        logger.debug("In Teardown");
+        driver.close();
+        driver.quit();
     }
 }

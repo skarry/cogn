@@ -1,32 +1,38 @@
 package org.o2.pages;
 
 import org.openqa.selenium.By;
-import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
-import org.testng.Assert;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 
-public class ContactUsPage {
-    WebDriver driver;
+public class ContactUsPage extends WebPage {
+
     private String iHaveGotATQLocator = "I've got a technical question";
     private String preferToSpeakSomeoneLocator = "#contacts-q26>a";
     private String payAndGoTeamLocator = "Pay & Go Team";
     private String openingTimesLocator = "div.outer[style='display: block;'] h4.paygoteam+div.outer[style='display: block;'] div.times>table>tbody>tr";
 
     public ContactUsPage(WebDriver driver) {
-        this.driver = driver;
+        super(driver);
     }
+
+    /**
+     * Method to select I Have Got A Technical Question
+     */
 
     public void selectIHaveGotATechnicalQuestion() {
         driver.findElement(By.linkText(iHaveGotATQLocator)).click();
     }
+
+    /**
+     * Method to select Prefer to Speak to Someone
+     */
 
     public void selectPreferToSpeakToSomeone() {
         WebDriverWait wait = new WebDriverWait(driver, 5);
@@ -34,10 +40,17 @@ public class ContactUsPage {
         driver.findElement(By.cssSelector(preferToSpeakSomeoneLocator)).click();
     }
 
+    /**
+     * Method to Select Pay and GO Team
+     */
+
     public void selectPayAndGoTeamLink() {
         driver.findElement(By.linkText(payAndGoTeamLocator)).click();
     }
 
+    /**
+     * Method to get Opening Times Map
+     */
     public Map<String, String> getOpeningTimes() {
         List<WebElement> timesList = driver.findElements(By.cssSelector(openingTimesLocator));
         System.out.println("Opening Times List: " + timesList.size());
